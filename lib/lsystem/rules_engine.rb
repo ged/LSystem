@@ -28,6 +28,10 @@ class LSystem::RulesEngine
 	public
 	######
 
+	#
+	# DSL Methods
+	#
+
 	### Get/set the system's variables (the replaceable parts of its alphabet).
 	def variables( *new_values )
 		self.variables = new_values unless new_values.empty?
@@ -102,6 +106,10 @@ class LSystem::RulesEngine
 		@rules = Array( new_values ).map( &:to_s )
 	end
 
+
+	#
+	# Iteration API
+	#
 
 	### Apply the system's rules to the given +state+ and return the result.
 	def apply_rules( state )

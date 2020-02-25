@@ -19,9 +19,18 @@ algae = LSystem.declare do
 
 end
 
-class ImageProductionAdapter < LSystem::ProductionAdapter
 
-	production_map 'A' => :print_a,
+iter = algae.each
+8.times do |i|
+	puts "n = %d : %s" % [ i, iter.next ]
+end
+
+# -or-
+
+LSystem.run( algae, 8 ) do
+
+	production_map \
+		'A' => :print_a,
 		'B' => :print_b
 
 	def print_a
@@ -32,27 +41,7 @@ class ImageProductionAdapter < LSystem::ProductionAdapter
 		print 'B'
 	end
 
-	### Declare what happens for '['
-	def push
-
-	end
-
-	### Declare what happens for ']'
-	def pull
-
-	end
-
 end
-
-
-iter = algae.each
-8.times do |i|
-	puts "n = %d : %s" % [ i, iter.next ]
-end
-
-# -or-
-
-algae.run( ImageProductionAdapter, 8 )
 
 # n = 1 : AB
 # n = 2 : ABA

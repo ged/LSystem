@@ -27,7 +27,8 @@ RSpec.describe LSysteem::ProductionAdapter do
 
 
 		it "can declare a method map for its productions" do
-			subclass.production_map 'A' => :print_a
+			subclass.production_map 'A' => :do_a_thing
+			subclass.production_map 'B' => :do_b_thing
 
 			
 		end
