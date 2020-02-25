@@ -6,7 +6,7 @@ require_relative 'spec_helper'
 require 'rspec'
 require 'lsystem'
 
-RSpec.describe LSystem do
+RSpec.describe( LSystem ) do
 
 	it "allows an L-System to be declared" do
 		result = described_class.declare {}
@@ -27,13 +27,18 @@ RSpec.describe LSystem do
 				'A' => :append_A,
 				'B' => :append_B
 
-			on_start do
+			on_start do |_generation_number, _previous_result|
 				@output = String.new( encoding: 'utf-8' )
 			end
 
-			result do
+			result do |_generation_number|
 				@output
 			end
+
+			on_finish do |_generation_number, _result|
+				@output = nil
+			end
+
 
 			def initialize
 				@output = nil
@@ -48,6 +53,8 @@ RSpec.describe LSystem do
 			end
 
 		end
+
+		expect( result ).to eq( 'ABAABABAABAABABAABABAABAABABAABAAB' )
 	end
 
 end

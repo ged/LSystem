@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require 'set'
+require 'loggability'
 
 require 'lsystem' unless defined?( LSystem )
 
@@ -9,6 +10,12 @@ require 'lsystem' unless defined?( LSystem )
 # An engine for iterating over successive applications of the L-System's
 # ruleset to its axiom.
 class LSystem::RulesEngine
+	extend Loggability
+
+
+	# Loggability API -- log to the lsystem logger
+	log_to :lsystem
+
 
 	### Create a new rules engine for an L-System. If the +block+ is present,
 	### it is called with the new instance as +self+.

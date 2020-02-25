@@ -5,7 +5,7 @@ require_relative '../spec_helper'
 require 'lsystem/rules_engine'
 
 
-RSpec.describe LSystem::RulesEngine do
+RSpec.describe( LSystem::RulesEngine ) do
 
 	let( :instance ) { described_class.new }
 
