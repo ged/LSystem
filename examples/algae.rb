@@ -20,6 +20,16 @@ algae = LSystem.declare do
 end
 
 
+# n = 1 : AB
+# n = 2 : ABA
+# n = 3 : ABAAB
+# n = 4 : ABAABABA
+# n = 5 : ABAABABAABAAB
+# n = 6 : ABAABABAABAABABAABABA
+# n = 7 : ABAABABAABAABABAABABAABAABABAABAAB
+
+
+puts ">>> Manual iteration: "
 iter = algae.each
 8.times do |i|
 	puts "n = %d : %s" % [ i, iter.next ]
@@ -27,11 +37,20 @@ end
 
 # -or-
 
+puts "\n>>> Using a production adapter: "
 LSystem.run( algae, 8 ) do
 
 	production_map \
 		'A' => :print_a,
 		'B' => :print_b
+
+	on_start do |i, *|
+		print "n = #{i} : "
+	end
+
+	on_finish do |*|
+		puts
+	end
 
 	def print_a
 		print 'A'
@@ -42,13 +61,4 @@ LSystem.run( algae, 8 ) do
 	end
 
 end
-
-# n = 1 : AB
-# n = 2 : ABA
-# n = 3 : ABAAB
-# n = 4 : ABAABABA
-# n = 5 : ABAABABAABAAB
-# n = 6 : ABAABABAABAABABAABABA
-# n = 7 : ABAABABAABAABABAABABAABAABABAABAAB
-
 
