@@ -9,7 +9,7 @@ module LSystem
 	extend Loggability
 
 	# Package version
-	VERSION = '0.0.1'
+	VERSION = '0.1.0'
 
 	# Version control revision
 	REVISION = %q$Revision$
