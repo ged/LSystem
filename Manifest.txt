@@ -10,4 +10,3 @@ spec/lsystem/production_adapter_spec.rb
 spec/lsystem/rules_engine_spec.rb
 spec/lsystem_spec.rb
 spec/spec_helper.rb
-
