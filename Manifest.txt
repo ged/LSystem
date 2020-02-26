@@ -1,7 +1,13 @@
 .simplecov
-ChangeLog
-README.md
-Rakefile
+History.md
+examples/fern_gn7.png
 lib/lsystem.rb
+lib/lsystem/production_adapter.rb
+lib/lsystem/rules_engine.rb
+Rakefile
+README.md
+spec/lsystem/production_adapter_spec.rb
+spec/lsystem/rules_engine_spec.rb
 spec/lsystem_spec.rb
 spec/spec_helper.rb
+

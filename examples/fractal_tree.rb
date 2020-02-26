@@ -3,16 +3,10 @@
 require 'tortoise'
 require 'lsystem'
 
-# Add some functionality to the Tortoise interpreter
-module TortoiseInterpreterHacks
-	def direction=( new_direction )
-		@direction = new_direction
-	end
-end
-Tortoise::Interpreter.prepend( TortoiseInterpreterHacks )
+require_relative 'tortoise_monkeypatches'
 
 
-# Lindenmayer's original L-system for modelling the growth of algae.
+# Fractal binary tree
 #
 #   - variables : 0, 1
 #   - constants: [, ]
@@ -52,8 +46,9 @@ LSystem.run( fractal_tree, 9 ) do
 
 
 	on_start do |i, _|
-		@turtle = Tortoise::Interpreter.new( 1024 )
+		@turtle = Tortoise::Interpreter.new( 1050 )
 		@turtle.setpos( 512, 0 )
+		@turtle.direction = 90
 		@turtle.pd
 	end
 
@@ -67,24 +62,13 @@ LSystem.run( fractal_tree, 9 ) do
 
 	### Draw a line segment with a leaf.
 	def draw_leaf
-		@turtle.fd( 6 )
-		@turtle.rt( 90 )
-		@turtle.fd( 3 )
-		@turtle.lt( 90 )
-		@turtle.fd( 6 )
-		@turtle.lt( 90 )
-		@turtle.fd( 6 )
-		@turtle.lt( 90 )
-		@turtle.fd( 6 )
-		@turtle.lt( 90 )
-		@turtle.fd( 3 )
-		@turtle.lt( 180 )
+		@turtle.fd( 5 )
 	end
 
 
 	### Draw a line segment
 	def draw_branch
-		@turtle.fd( 3 )
+		@turtle.fd( 4 )
 	end
 
 

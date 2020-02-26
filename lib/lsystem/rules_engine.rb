@@ -169,7 +169,8 @@ class LSystem::RulesEngine
 
 	### Return a tuple of the predecessor and successor of the given +rule+.
 	def parse_rule( rule )
-		predecessor, successor = rule.strip.split( /\s*->\s*/, 2 )
+		predecessor, successor = rule.strip.split( /\s*(?:->|→)\s*/, 2 )
+		self.log.debug "Parsed rule: %p -> %p" % [ predecessor, successor ]
 		successor_set = Set.new( successor.chars )
 
 		raise "Invalid rule: predecessor %p is not in the variable set %p" %

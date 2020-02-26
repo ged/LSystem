@@ -2,3 +2,7 @@ coverage/
 \.esproj/
 \.yml$
 docs/
+spec/\.status
+\.png$
+\.lock$
+

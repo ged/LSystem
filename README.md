@@ -15,7 +15,158 @@ docs
 
 ## Description
 
-A toolkit for creating and using [Lindenmayer Systems][lsystem] (L-systems).
+A toolkit for creating and using [Lindenmayer Systems][l-system] (L-systems).
+It consists of a class that allows for declaration of the L-system's grammar,
+and another class that allows for the definition of how the symbols output by a
+grammar should be translated into work.
+
+
+### Examples
+
+Most of these were stolen from [the examples on Wikipedia][l-system], and can be found in the `examples/` directory of the source.
+
+#### Algae
+
+Lindenmayer's original L-system for modelling the growth of algae.
+
+* variables : A B
+* constants : none
+* axiom : A
+* rules : (A → AB), (B → A)
+
+Declare the rules:
+
+    algae = LSystem.declare do
+    
+    	variables :A, :B
+    	axiom 'A'
+    	rules 'A -> AB',
+    	    'B -> A'
+    
+    end
+
+then iterate it 8 times and print out each generation:
+
+    iter = algae.each
+    8.times do |i|
+        puts "n = %d : %s" % [ i, iter.next ]
+    end
+
+This outputs:
+
+    n = 0 : A
+    n = 1 : AB
+    n = 2 : ABA
+    n = 3 : ABAAB
+    n = 4 : ABAABABA
+    n = 5 : ABAABABAABAAB
+    n = 6 : ABAABABAABAABABAABABA
+    n = 7 : ABAABABAABAABABAABABAABAABABAABAAB
+
+
+You can also do more complex tasks with the symbols in each generation. For example, to generate pretty pictures.
+
+#### Barnsley fern
+
+* variables : X F
+* constants : + − [ ]
+* axiom : X
+* rules : (X → F+[[X]-X]-F[-FX]+X), (F → FF)
+* angle : 25°
+
+Declare the rules:
+
+    fern = LSystem.declare do
+    
+      variables 'X', 'F'
+      constants '+', '-', '[', ']'
+      axiom 'X'
+      rules \
+        'X → F+[[X]-X]-F[-FX]+X',
+        'F → FF'
+    
+    end
+
+Then hook them up to a Logo interpreter ([a monkeypatched version][tortoise-patch] of the [Tortoise gem][tortoise-gem]):
+
+    LSystem.run( fern, 8 ) do
+    
+      # The size of the canvas to draw on
+      CANVAS_SIZE = 2000
+    
+      # F: draw forward
+      # X : no-op
+      # -: turn left 25°
+      # +: turn right 25°
+      # [: push position and angle
+      # ]: pop position and angle
+      production_map \
+        'F' => :forward,
+        '-' => :turn_left,
+        '+' => :turn_right,
+        '[' => :save_pos_and_angle,
+        ']' => :restore_pos_and_angle
+    
+      ### Set up some instance variables
+      def initialize( * )
+        super
+        @turtle = nil
+        @positions = []
+      end
+    
+    
+      on_start do |i, _|
+        @turtle = Tortoise::Interpreter.new( CANVAS_SIZE )
+        @turtle.setpos( CANVAS_SIZE / 2, 0 )
+        @turtle.direction = 90
+        @turtle.pd
+      end
+    
+    
+      on_finish do |i, _|
+        File.open( "fern_gn#{i}.png", File::WRONLY|File::TRUNC|File::CREAT, 0644, encoding: 'binary' ) do |fh|
+          fh.write( @turtle.to_png )
+        end
+      end
+    
+    
+      ### Draw a line forward
+      def forward
+        @turtle.fd( 5 )
+      end
+    
+    
+      ### Turn 25° to the left
+      def turn_left
+        @turtle.lt( 25 )
+      end
+    
+    
+      ### Turn 25° to the right
+      def turn_right
+        @turtle.rt( 25 )
+      end
+    
+    
+      ### Save the drawing position and angle
+      def save_pos_and_angle
+        @positions.push([ @turtle.position, @turtle.direction ])
+      end
+    
+    
+      ### Restore the next saved position and angle
+      def restore_pos_and_angle
+        to_restore = @positions.pop or raise IndexError, "Position stack underflow"
+    
+        @turtle.setpos( *to_restore.first )
+        @turtle.direction = to_restore.last
+      end
+    
+    end
+
+This generates a sequence of images, which for generation 8 yields:
+
+![Fern Gen 7](examples/fern_gn7.png)
 
 
 ## Prerequisites
@@ -31,7 +182,7 @@ A toolkit for creating and using [Lindenmayer Systems][lsystem] (L-systems).
 ## Contributing
 
 You can check out the current development source with Mercurial via its
-[project page](http://bitbucket.org/ged/lsystem). Or if you prefer Git, via
+[project page](https://hg.sr.ht/~ged/LSystem). Or if you prefer Git, via
 [its Github mirror](https://github.com/ged/lsystem).
 
 After checking out the source, run:
