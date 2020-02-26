@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'lsystem'
+require 'l_system'
 
 
 # Lindenmayer's original L-system for modelling the growth of algae.

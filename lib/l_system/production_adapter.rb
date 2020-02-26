@@ -3,7 +3,7 @@
 
 require 'loggability'
 
-require 'lsystem' unless defined?( LSystem )
+require 'l_system' unless defined?( LSystem )
 
 
 # An adapter that connects method calls to an LSystem::RulesEngine's
@@ -12,8 +12,8 @@ class LSystem::ProductionAdapter
 	extend Loggability
 
 
-	# Loggability API -- log to the lsystem logger
-	log_to :lsystem
+	# Loggability API -- log to the l_system logger
+	log_to :l_system
 
 
 	### Inheritance callback -- add class-instance variables to the +subclass+.

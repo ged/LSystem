@@ -2,7 +2,7 @@
 
 require_relative '../spec_helper'
 
-require 'lsystem/production_adapter'
+require 'l_system/production_adapter'
 
 
 RSpec.describe( LSystem::ProductionAdapter ) do

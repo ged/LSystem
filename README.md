@@ -7,10 +7,10 @@ code
 : https://hg.sr.ht/~ged/LSystem
 
 github
-: https://github.com/ged/lsystem
+: https://github.com/ged/l_system
 
 docs
-: https://deveiate.org/code/lsystem
+: https://deveiate.org/code/l_system
 
 
 ## Description
@@ -176,14 +176,14 @@ This generates a sequence of images, which for generation 8 yields:
 
 ## Installation
 
-    $ gem install lsystem
+    $ gem install l_system
 
 
 ## Contributing
 
 You can check out the current development source with Mercurial via its
 [project page](https://hg.sr.ht/~ged/LSystem). Or if you prefer Git, via
-[its Github mirror](https://github.com/ged/lsystem).
+[its Github mirror](https://github.com/ged/l_system).
 
 After checking out the source, run:
 

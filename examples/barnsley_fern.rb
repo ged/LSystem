@@ -2,7 +2,7 @@
 
 require 'loggability'
 require 'tortoise'
-require 'lsystem'
+require 'l_system'
 
 require_relative 'tortoise_monkeypatches'
 
@@ -37,7 +37,7 @@ end
 
 LSystem.run( fern, 8 ) do
 	extend Loggability
-	log_to :lsystem
+	log_to :l_system
 
 
 	# The size of the canvas to draw on

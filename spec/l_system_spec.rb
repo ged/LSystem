@@ -4,7 +4,7 @@
 require_relative 'spec_helper'
 
 require 'rspec'
-require 'lsystem'
+require 'l_system'
 
 RSpec.describe( LSystem ) do
 

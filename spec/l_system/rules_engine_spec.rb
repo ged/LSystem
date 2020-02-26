@@ -2,7 +2,7 @@
 
 require_relative '../spec_helper'
 
-require 'lsystem/rules_engine'
+require 'l_system/rules_engine'
 
 
 RSpec.describe( LSystem::RulesEngine ) do

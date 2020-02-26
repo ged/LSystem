@@ -15,12 +15,12 @@ module LSystem
 	REVISION = %q$Revision$
 
 
-	# Loggability API -- set up a logger for lsystem
-	log_as :lsystem
+	# Loggability API -- set up a logger for l_system
+	log_as :l_system
 
 
-	autoload :RulesEngine, 'lsystem/rules_engine'
-	autoload :ProductionAdapter, 'lsystem/production_adapter'
+	autoload :RulesEngine, 'l_system/rules_engine'
+	autoload :ProductionAdapter, 'l_system/production_adapter'
 
 
 	### Declare a new L-System that is configured via the given +block+.

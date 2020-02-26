@@ -1,4 +1,4 @@
-# Release History for lsystem
+# Release History for l_system
 
 ---
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'tortoise'
-require 'lsystem'
+require 'l_system'
 
 require_relative 'tortoise_monkeypatches'
 

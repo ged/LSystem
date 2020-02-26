@@ -4,7 +4,7 @@
 require 'set'
 require 'loggability'
 
-require 'lsystem' unless defined?( LSystem )
+require 'l_system' unless defined?( LSystem )
 
 
 # An engine for iterating over successive applications of the L-System's
@@ -13,8 +13,8 @@ class LSystem::RulesEngine
 	extend Loggability
 
 
-	# Loggability API -- log to the lsystem logger
-	log_to :lsystem
+	# Loggability API -- log to the l_system logger
+	log_to :l_system
 
 
 	### Create a new rules engine for an L-System. If the +block+ is present,
