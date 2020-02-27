@@ -235,4 +235,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 [l-system]: https://en.wikipedia.org/wiki/L-system
 [kaki-lsystem]: https://rubygems.org/gems/kaki-lsystem
+[tortoise-gem]: https://rubygems.org/gems/tortoise
+[tortoise-monkeypatch]: https://hg.sr.ht/~ged/LSystem/browse/default/examples/tortoise_monkeypatches.rb
 
