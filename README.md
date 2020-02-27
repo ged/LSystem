@@ -7,7 +7,7 @@ code
 : https://hg.sr.ht/~ged/LSystem
 
 github
-: https://github.com/ged/l_system
+: https://github.com/ged/LSystem
 
 docs
 : https://deveiate.org/code/l_system
@@ -19,6 +19,11 @@ A toolkit for creating and using [Lindenmayer Systems][l-system] (L-systems).
 It consists of a class that allows for declaration of the L-system's grammar,
 and another class that allows for the definition of how the symbols output by a
 grammar should be translated into work.
+
+**Note** if you just want to draw with it, you should consider using
+[kaki-lsystem][] instead; it has a nice interface with drawing already
+integrated. This gem is intended for using l-systems for things other than
+drawing (though it can obviously do that too), so it requires a bit more work.
 
 
 ### Examples
@@ -229,4 +234,5 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 [l-system]: https://en.wikipedia.org/wiki/L-system
+[kaki-lsystem]: https://rubygems.org/gems/kaki-lsystem
 
